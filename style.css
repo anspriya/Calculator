@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 0;
+    padding: 5px 0;
+    color: rgb(241, 232, 232);
+    font-size: 2rem;
+    text-align: center;
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+h1:hover {
+    color: rgba(245, 202, 10, 0.76);
+    font-size: 2.2rem;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(250, 246, 246);
+}
+
+#calculator {
+    font-family: Arial, sans-serif;
+    background-color: rgb(32, 32, 73);
+    border-radius: 25px;
+    overflow: hidden;
+    width: 470px;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+#display {
+    padding: 15px;
+    width: 100%;
+    font-size: 3rem;
+    text-align: left;
+    border: none;
+    background-color: rgb(18, 18, 20);
+    color: rgb(221, 212, 212);
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+#keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 20px;
+    border-radius: 40px;
+    border: none;
+    background-color: rgb(206, 206, 216);
+    color: rgb(26, 24, 24);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: rgba(245, 202, 10, 0.76);
+    color: black;
+}
+
+button:active {
+    background-color: rgba(245, 202, 10, 0.76);
+    color: black;
+}
+
+.operator-btn {
+    background-color: rgba(245, 202, 10, 0.76);
+}
+
+.operator-btn:hover {
+    background-color: rgb(13, 14, 13);
+    color: white;
+}
+
+.operator-btn:active {
+    background-color: rgb(13, 14, 13);
+    color: white;
+}
+
+@media (max-width: 600px) {
+    #calculator {
+        width: 90%;
+    }
+
+    #display {
+        font-size: 2rem;
+    }
+
+    button {
+        font-size: 1.5rem;
+    }
+
+    #keys {
+        gap: 5px;
+    }
+}
