@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
+    <title>Advanced Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="calculator">
         <h1>Calculator</h1>
         <input id="display" readonly>
+        <div id="history"></div>
         <div id="keys">
             <button onclick="appendToDisplay('+')" class="operator-btn">+</button>
             <button onclick="appendToDisplay('7')">7</button>
@@ -27,29 +28,60 @@
             <button onclick="appendToDisplay('0')">0</button>
             <button onclick="appendToDisplay('.')">.</button>
             <button onclick="calculate()">=</button>
-            <button onclick="clearDisplay()" class="operator-btn">C</button>
+            <button onclick="appendToDisplay('%')" class="operator-btn">%</button>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="backspace()">⌫</button>
         </div>
+        <button onclick="toggleTheme()" id="theme-toggle">🌓</button>
     </div>
     <script>
-        // Calculator program
-
         const display = document.getElementById("display");
+        const history = document.getElementById("history");
 
+        // Append input to display
         function appendToDisplay(input) {
+            playSound();
             display.value += input;
         }
 
+        // Clear display
         function clearDisplay() {
             display.value = "";
         }
 
+        // Evaluate the result
         function calculate() {
             try {
-                display.value = eval(display.value);
-            } catch (error) {
+                const result = eval(display.value);
+                history.innerHTML += `<p>${display.value} = ${result}</p>`;
+                display.value = result;
+                localStorage.setItem('lastResult', result);
+            } catch {
                 display.value = "Error";
             }
         }
+
+        // Backspace functionality
+        function backspace() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        // Toggle theme
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+
+        // Play button sound
+        function playSound() {
+            const audio = new Audio('click.mp3');
+            audio.play();
+        }
+
+        // Load last result on startup
+        window.onload = function () {
+            const lastResult = localStorage.getItem('lastResult');
+            if (lastResult) display.value = lastResult;
+        };
     </script>
 </body>
 </html>
